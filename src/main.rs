@@ -13,7 +13,7 @@ fn print_matrix(matrix: [[&str; 5]; 5]) {
 
 fn depth_first_search(mut matrix: [[&str; 5]; 5], start: (isize, isize)) -> [[&str; 5]; 5] {
     let mut stack: VecDeque<(isize, isize)> = VecDeque::new();
-    let path_travaled: Vec<(isize, isize)> = Vec::new();
+    let path_traveled: Vec<(isize, isize)> = Vec::new();
 
     stack.push_back(start);
     while ! stack.is_empty() {
@@ -22,7 +22,7 @@ fn depth_first_search(mut matrix: [[&str; 5]; 5], start: (isize, isize)) -> [[&s
         for valid_next_nodes in valid_next_nodes(
             matrix,
             (current_node_row, current_node_column),
-            path_travaled.as_ref()
+            path_traveled.to_owned()
         ) {
             stack.push_back(valid_next_nodes);
         }
@@ -33,7 +33,7 @@ fn depth_first_search(mut matrix: [[&str; 5]; 5], start: (isize, isize)) -> [[&s
 fn valid_next_nodes(
     matrix: [[&str; 5]; 5],
     current_pos: (isize, isize),
-    path_traveled: &Vec<(isize, isize)>,
+    path_traveled: Vec<(isize, isize)>,
 ) -> Vec<(isize, isize)> {
     // UP, DOWN, LEFT, RIGHT
     let mut valid_next_nodes = Vec::new();
